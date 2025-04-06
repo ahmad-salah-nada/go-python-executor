@@ -1,0 +1,17 @@
+services:
+  go-server:
+    build: .
+    container_name: go-python-executor
+    ports:
+      - "8080:8080"
+    restart: always
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy-server
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    restart: always
